@@ -1,0 +1,7 @@
+class <%= class_name %>Parameter
+  PERMITTED = %i()
+
+  def self.request_params(params)
+    params.permit(*PERMITTED)
+  end
+end

@@ -2,7 +2,12 @@
 Short description and motivation.
 
 ## Usage
-How to use my plugin.
+### app/parameters
+```
+$ raiils generate parameter api/resources/register
+    create  app/parameters/api/resources/register_parameter.rb
+    create  spec/parameters/api/resources/register_parameter_spec.rb
+```
 
 ## Installation
 Add this line to your application's Gemfile:
