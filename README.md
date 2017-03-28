@@ -1,5 +1,5 @@
 # PatternsGenerator
-Short description and motivation.
+Ruby on Rails (with RSpec) custom generators.
 
 ## Usage
 ### app/parameters
