@@ -1,5 +1,6 @@
 # PatternsGenerator
-Ruby on Rails (with RSpec) custom generators.
+Ruby on Rails (with RSpec) custom generators.  
+[![Build Status](https://travis-ci.org/weathare/patterns_generator.svg?branch=master)](https://travis-ci.org/weathare/patterns_generator)
 
 ## Usage
 ### app/parameters
@@ -7,6 +8,7 @@ Ruby on Rails (with RSpec) custom generators.
 $ raiils generate parameter api/resources/register
     create  app/parameters/api/resources/register_parameter.rb
     create  spec/parameters/api/resources/register_parameter_spec.rb
+    insert  app/controllers/application_controller.rb
 ```
 
 ## Installation
