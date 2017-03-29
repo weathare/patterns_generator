@@ -10,19 +10,25 @@ class Rails::ParameterGenerator < Rails::Generators::NamedBase
   def inject_code
     apps_file = Rails.root.join(*%w[app controllers application_controller.rb])
 
-    inject_into_file apps_file, before: /^end/ do <<-"CODE"
+    inject_into_file apps_file, before: /^end/ do <<-'CODE'
 
   private
+    def controller_class_name
+      params[:controller].singularize
+    end
+
+    def controller_class
+      controller_class_name.camelize.constantize
+    end
+
     def permitted_params_class
-      controller = params.permit(:controller)[:controller]
-      controller << "_parameter"
-      @permitted_params_class ||= controller.camelize.constantize
+      "#{controller_class_name}_parameter".camelize.constantize
     end
 
     def permitted_params
-      @permitted_params ||= permitted_params_class.request_params(params)
+      permitted_params_class.request_params(params)
     end
     CODE
-    end unless self.behavior == :invoke && File.read(apps_file) =~ /permitted_params_class/
+    end unless self.behavior == :invoke && File.read(apps_file) =~ /controller_class_name/
   end
 end

@@ -26,6 +26,8 @@ RSpec.describe Rails::ParameterGenerator, type: :generator do
     it { expect(file("spec/parameters/api/resources/regist_parameter_spec.rb")).to exist }
     it(:inject_code) do
       file = File.read(Rails.root.join(*%w[app controllers application_controller.rb]))
+      expect(file).to match /controller_class_name/
+      expect(file).to match /controller_class/
       expect(file).to match /permitted_params_class/
       expect(file).to match /permitted_params/
     end
