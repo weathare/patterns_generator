@@ -29,6 +29,25 @@ class Rails::ParameterGenerator < Rails::Generators::NamedBase
       permitted_params_class.request_params(params)
     end
     CODE
-    end unless self.behavior == :invoke && File.read(apps_file) =~ /controller_class_name/
+    end if injectable?(apps_file)
   end
+
+  private
+    def injectable?(file_path)
+      if self.behavior == :invoke
+        !methods_defined?(file_path)
+      else
+        !parameters_file_exists?
+      end
+    end
+
+    def methods_defined?(file_path)
+      !!(File.read(file_path) =~ /controller_class_name/)
+    end
+
+    def parameters_file_exists?
+      f = (class_path << file_name) * "/"
+      targets = Dir.glob(Rails.root.join(*%w[app parameters ** *.rb]))
+      targets.delete_if { |file| file =~ /#{f}_parameter\.rb+/ }.size > 0
+    end
 end
