@@ -11,6 +11,20 @@ $ raiils generate parameter api/resources/register
     insert  app/controllers/application_controller.rb
 ```
 
+### app/controllers/concerns
+```
+$ rails generate concern:controller tokens/decodable
+      create  app/controllers/concerns/tokens/decodable.rb
+      create  spec/controllers/concerns/tokens/decodable_spec.rb
+```
+
+### app/models/concerns
+```
+$ rails generate concern:model tokens/generatable
+      create  app/models/concerns/tokens/generatable.rb
+      create  spec/models/concerns/tokens/generatable_spec.rb
+```
+
 ## Installation
 Add this line to your application's Gemfile:
 
