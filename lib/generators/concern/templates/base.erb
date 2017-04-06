@@ -1,11 +1,11 @@
 module <%= class_name %>
-  include ActiveSupport::Concern
+  extend ActiveSupport::Concern
 
-  include do
-    # some callback ...
+  included do
+    # some callbacks ...
   end
 
-  module ClassMethods
-    # some method ...
+  class_methods do
+    # some methods ...
   end
 end
